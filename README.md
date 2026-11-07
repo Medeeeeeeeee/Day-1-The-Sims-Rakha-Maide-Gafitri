@@ -1,103 +1,29 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Day-1-(The-Sims)_Rakha Maide Gafitri
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Profil Peserta
+- **Nama Lengkap:** Rakha Maide Gafitri
+- **Kelompok:** The Sims
 
-## About Laravel
+## Deskripsi Repository
+Repository ini berisi dokumentasi dan catatan pribadi dari kegiatan Day 1 Proyek Workshop. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Tujuan Repository
+Repository ini dibuat untuk memenuhi tugas sosjur day-1 serta sebagai tempat mendokumentasikan materi, wawasan, dan pengetahuan baru yang telah dipelajari selama sesi berlangsung.
 
 ---
 
-## Project Overview
+## Dokumentasi Kegiatan Workshop (Day 1)
 
-This application implements a minimal **Ticketing & PC Maintenance** system as the Final Project MVP.
+### 1. Rangkuman Materi
+Materi hari ini dibawakan oleh kak Nugi Farhan dengan topik "Building with AI, Managing Change with GitHub". Pembahasan utama mencakup cara merancang instruksi AI yang efektif (Prompt Engineering) serta manajemen perubahan dan kolaborasi kode menggunakan Git dan GitHub. Di akhir sesi, peserta mempraktikkan langsung alur kerja ini dengan membangun proyek web sederhana bernama "Student Task Planner" menggunakan bantuan AI dan menyimpannya ke GitHub.
 
-### Roles
+### 2. Pengetahuan Baru / Poin Penting
+- **Struktur Prompt Engineering yang Baik**: Prompt adalah instruksi kepada model AI untuk mendapatkan hasil tertentu. Struktur yang efektif harus memuat *Role* (Peran), *Task* (Tugas), *Context* (Konteks), dan *Format*. Konteks adalah kunci utama agar hasil relevan.
+- **Keuntungan Prompt Engineering**: Merancang prompt dengan baik dapat meningkatkan performa model AI, mengurangi bias atau respons ofensif, meningkatkan kontrol, dan memberikan pengalaman yang lebih baik.
+- **Perbedaan Git dan GitHub**: Git adalah sistem *version control* terdistribusi (DVCS) untuk melacak perubahan kode secara lokal di komputer. GitHub adalah platform berbasis web untuk menyimpan *repository* Git tersebut secara *online* dan mendukung kolaborasi.
+- **Alur Kerja Git (Git Workflow)**: File bermula di *Working Directory*, kemudian dipindahkan ke *Staging Area* menggunakan perintah `git add`, dan akhirnya disimpan ke dalam *Repository* (.git directory) secara permanen menggunakan perintah `git commit`.
+- **Perintah Esensial Git**: Beberapa perintah penting yang digunakan meliputi `git init` (memulai repo baru), `git commit -m 'message'` (menyimpan file ke repository), `git push origin main` (mengirim ke remote branch), dan `git pull origin main` (mengambil dan menggabungkan perubahan dari remote).
+- **Autentikasi Keamanan**: Akses ke GitHub dilakukan secara aman dengan membuat kunci SSH (menggunakan `ssh-keygen -t ed25519`) dan mendaftarkannya ke pengaturan akun GitHub.
 
-- **admin** – manage labs and view everything
-- **asisten** – perform maintenance, update ticket status, view schedules/history
-- **user/mahasiswa** – submit tickets and track progress
-
-### Core Features
-
-1. **Status Workflow** – tickets progress through `pending`, `proses`, `selesai`.
-2. **Asset History** – filter repair history by lab and PC number.
-3. **Maintenance Schedule** – create recurring tasks; notifications via `notify:maintenance` command.
-4. **Print Reports** – index pages include a print button for quick reporting.
-5. **Responsive Web UI** – built with Tailwind CSS.
-
-### Setup Instructions
-
-1. Copy `.env.example` to `.env` and configure database credentials (MySQL/SQLite).
-2. Run migrations & seeders:
-   ```bash
-   php artisan migrate --seed
-   ```
-3. Start server:
-   ```bash
-   php artisan serve
-   ```
-4. Pre‑seeded users:
-   - **admin@example.com** / password
-   - **asisten@example.com** / password
-
-### Running Tests
-
-Execute:
-```bash
-php artisan test
-```
-
-All existing tests cover authentication and basic ticket workflow.
+### 3. Pendapat Pribadi (Day 1 Proyek Workshop)
+Workshop hari ini sangat menyenangkan dan menyajikan banyak materi yang menurut saya sangat penting serta menarik untuk dipelajari. Namun sayangnya, terdapat kendala pada koneksi Wi-Fi yang menurut saya cukup mengganggu keberlangsungan acara. Akibat kendala jaringan tersebut, banyak peserta yang terkendala dan tidak bisa mengikuti step-step praktik dari workshopnya secara optimal. Semoga ke depannya koneksi jaringan bisa lebih stabil agar sesi praktik berjalan lancar.

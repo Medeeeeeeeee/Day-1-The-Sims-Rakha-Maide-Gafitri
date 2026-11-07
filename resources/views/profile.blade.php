@@ -1,0 +1,465 @@
+@extends('layouts.app')
+
+@section('content')
+<style>
+    .profile-page {
+        min-height: 100vh;
+        background: #efefef;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .profile-shell {
+        width: 100%;
+        min-height: 100vh;
+        background: #ffffff;
+    }
+
+    .profile-topbar {
+        background: #2d7be8;
+        color: #ffffff;
+        text-align: center;
+        font-size: 33px;
+        font-weight: 700;
+        line-height: 1.2;
+        padding: 14px 20px 15px;
+    }
+
+    .profile-body {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .profile-sidebar {
+        width: 250px;
+        background: #ffffff;
+        border-right: 2px solid #cfcfcf;
+        padding: 10px 8px 18px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2px;
+        margin-bottom: 34px;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        border: 4px solid #111111;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+    }
+
+    .profile-meta {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #666666;
+        max-width: 150px;
+        word-break: break-word;
+    }
+
+    .profile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 4px;
+    }
+
+    .profile-sidebar-bottom {
+        margin-top: auto;
+        padding: 18px 4px 0;
+    }
+
+    .profile-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 44px;
+        border-radius: 14px;
+        background: #eeeeee;
+        padding: 0 14px;
+        color: #1c1c1c;
+        font-size: 21px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .profile-nav-item:hover {
+        background: #e7e7e7;
+        transform: translateX(2px);
+    }
+
+    .profile-nav-item.active {
+        background: #e3e3e3;
+    }
+
+    .profile-nav-item svg {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+    }
+
+    .profile-logout-btn {
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+        text-align: left;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .profile-main {
+        flex: 1;
+        background: #ffffff;
+        padding: 20px 26px 26px;
+    }
+
+    .hero-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border-radius: 18px;
+        background: #d9d9d9;
+        padding: 18px 16px 10px 26px;
+        margin: 14px 0 34px;
+        overflow: hidden;
+        min-height: 170px;
+    }
+
+    .hero-title {
+        margin: 0 0 6px;
+        color: #111111;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 1.05;
+    }
+
+    .hero-subtitle {
+        margin: 0;
+        color: #111111;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .hero-illustration {
+        width: 290px;
+        max-width: 38%;
+        display: block;
+        object-fit: contain;
+        object-position: right bottom;
+        align-self: flex-end;
+        margin-right: -8px;
+        margin-bottom: -10px;
+    }
+
+    .chart-card {
+        max-width: 860px;
+        border-radius: 20px;
+        background: #d9d9d9;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        padding: 16px 20px 12px;
+    }
+
+    .chart-title {
+        margin: 0 0 10px;
+        color: #111111;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .chart-holder {
+        height: 330px;
+    }
+
+    .logout-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.34);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .logout-overlay.active {
+        display: flex;
+    }
+
+    .logout-modal {
+        width: 100%;
+        max-width: 230px;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 12px 10px 10px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .logout-modal-title {
+        color: #111111;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 4px;
+    }
+
+    .logout-modal-text {
+        color: #c7c7c7;
+        font-size: 10px;
+        font-weight: 600;
+        margin: 0 0 12px;
+    }
+
+    .logout-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .logout-modal-btn {
+        border: 0;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .logout-cancel {
+        background: #f2b705;
+        color: #111111;
+    }
+
+    .logout-confirm {
+        background: #2d7be8;
+        color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+        .profile-body {
+            flex-direction: column;
+        }
+
+        .profile-sidebar {
+            width: 100%;
+            border-right: 0;
+            border-bottom: 2px solid #cfcfcf;
+        }
+
+        .profile-main {
+            padding: 16px;
+        }
+
+        .hero-banner {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-title {
+            font-size: 30px;
+        }
+
+        .hero-illustration {
+            max-width: 100%;
+            width: 220px;
+            margin-left: auto;
+            margin-right: 0;
+            margin-bottom: -8px;
+        }
+
+        .chart-card {
+            padding: 16px;
+        }
+
+        .chart-holder {
+            height: 280px;
+        }
+    }
+</style>
+
+<div class="profile-page">
+    <div class="profile-shell">
+        <div class="profile-topbar">Dashboard Mahasiswa</div>
+
+        <div class="profile-body">
+            <aside class="profile-sidebar">
+                <div class="profile-user">
+                    <div class="profile-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:38px;height:38px;color:#111">
+                            <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/>
+                        </svg>
+                    </div>
+                    <div class="profile-meta">
+                        <div>{{ $user->nim ?? 'NIM' }}</div>
+                        <div>{{ $user->gender ?? 'Gender' }}</div>
+                        <div>{{ $user->email }}</div>
+                        <div>{{ $user->faculty ?? 'Fakultas' }}</div>
+                    </div>
+                </div>
+
+                <nav class="profile-nav">
+                    <a href="{{ route('profile') }}" class="profile-nav-item active">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/>
+                        </svg>
+                        <span>Profil</span>
+                    </a>
+
+                    <a href="{{ route('dashboard') }}" class="profile-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z"/>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+
+                    <a href="{{ route('tickets.create') }}" class="profile-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 11H13V5h-2v6H5v2h6v6h2v-6h6v-2z"/>
+                        </svg>
+                        <span>Buat Ticket</span>
+                    </a>
+                </nav>
+
+                <div class="profile-sidebar-bottom">
+                    <button type="button" class="profile-nav-item profile-logout-btn" data-open-logout>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m0 0l4-4m-4 4l4 4m5-9h5a2 2 0 012 2v6a2 2 0 01-2 2h-5"/>
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </aside>
+
+            <main class="profile-main">
+                <section class="hero-banner">
+                    <div>
+                        <h2 class="hero-title">Hi, {{ $user->name ?? $user->displayName() }}</h2>
+                        <p class="hero-subtitle">Get Ready For Pc Repair And Maintenance</p>
+                    </div>
+                    <img class="hero-illustration" src="{{ asset('images/image1.png') }}" alt="Illustration">
+                </section>
+
+                <section class="chart-card">
+                    <h3 class="chart-title">Jumlah Perbaikan PC Setiap Bulan</h3>
+                    <div class="chart-holder">
+                        <canvas id="profileChart"></canvas>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="logout-overlay" id="logoutOverlay">
+    <div class="logout-modal">
+        <p class="logout-modal-title">Keluar</p>
+        <p class="logout-modal-text">Apakah anda yakin untuk keluar ?</p>
+        <div class="logout-modal-actions">
+            <button type="button" class="logout-modal-btn logout-cancel" id="logoutCancel">Tidak</button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="logout-modal-btn logout-confirm">Ya</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('profileChart').getContext('2d');
+        const labels = @json($labels);
+        const counts = @json(array_values($monthlyData));
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: '#56c3ff',
+                    borderWidth: 0,
+                    barThickness: 22
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#111111',
+                            font: {
+                                size: 11,
+                                weight: '700'
+                            }
+                        },
+                        border: {
+                            color: '#444444'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 10,
+                        ticks: {
+                            stepSize: 1,
+                            color: '#111111',
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            color: '#6f6f6f'
+                        },
+                        border: {
+                            color: '#444444'
+                        }
+                    }
+                }
+            }
+        });
+
+        const overlay = document.getElementById('logoutOverlay');
+        const cancelBtn = document.getElementById('logoutCancel');
+        const openButtons = document.querySelectorAll('[data-open-logout]');
+
+        openButtons.forEach((button) => {
+            button.addEventListener('click', function () {
+                overlay.classList.add('active');
+            });
+        });
+
+        cancelBtn.addEventListener('click', function () {
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+    });
+</script>
+@endsection
